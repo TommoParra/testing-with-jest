@@ -1,9 +1,17 @@
 <template>
-  <h1>Events for Good</h1>
+  <h1 data-testid="event-list-title">Events for Good</h1>
   <div class="events">
-    <EventCard v-for="event in events" :key="event.id" :event="event" />
+    <router-link
+      class="event-link"
+      :to="{ name: 'EventDetails', params: { id: event.id } }"
+      v-for="event in events"
+      :key="event.id"
+    >
+      <EventCard data-testid=event :event="event" />
+    </router-link>
   </div>
 </template>
+
 
 <script>
 import EventCard from '@/components/EventCard.vue'
@@ -14,8 +22,7 @@ export default {
     EventCard
   },
   created() {
-    this.$store.dispatch('fetchEvents')
-    .catch(error => {
+    this.$store.dispatch('fetchEvents').catch(error => {
       this.$router.push({
         name: 'ErrorDisplay',
         params: { error: error }
