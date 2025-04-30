@@ -1,4 +1,4 @@
-# Intro to State Management
+# Testing jest for Vue3 (just a workshop/experiment)
 
 ## Project setup
 ```
